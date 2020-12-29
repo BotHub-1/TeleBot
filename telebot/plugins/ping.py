@@ -46,12 +46,12 @@ async def _(event):
     if event.fwd_from:
         return
     start = datetime.now()
-    x = await eor(event, "⛝ Pong! ⛝")
+    x = await eor(event, "╳ ρσиg ╳")
     end = datetime.now()
     ms = (end - start).microseconds / 1000
     uptime = get_readable_time((time.time() - StartTime))
     await x.edit(
-        f"⪼ **Ping speed** : `{ms}`\n⪼ **Uptime** : `{uptime}`\n⪼ **Owner** : [{TELE_NAME}](tg://user?id={OWNER_ID})"
+        f"℘ **Pong!** : `{ms}`\n℘ **Uptime** : `{uptime}`\n℘ **Owner** : [{TELE_NAME}](tg://user?id={OWNER_ID})"
     )
 
 
