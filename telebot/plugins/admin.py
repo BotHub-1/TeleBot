@@ -32,16 +32,16 @@ from telebot.telebotConfig import Var
 from telebot.utils import admin_cmd, errors_handler, sudo_cmd
 
 # =================== CONSTANT ===================
-PP_TOO_SMOL = "`The image is too small`"
-PP_ERROR = "`Failure while processing the image`"
-NO_ADMIN = "`I am not an admin here!`"
-NO_PERM = "`No sufficient permissions!`"
+PP_TOO_SMOL = "`The image is too small can't fetch data`"
+PP_ERROR = "`Failure while processing the image soory`"
+NO_ADMIN = "`I am not an admin or mod!`"
+NO_PERM = "`i have no permission to do this or insufficient of permission!`"
 NO_SQL = "`Running on Non-SQL mode!`"
 
-CHAT_PP_CHANGED = "`Chat Picture Changed`"
+CHAT_PP_CHANGED = "`Chat Picture was successful Changed`"
 CHAT_PP_ERROR = (
-    "`Some issue with updating the pic,`"
-    "`maybe coz I'm not an admin,`"
+    "`Some issue with updating the picture,`"
+    "`maybe coz I'm not an admin or a mod,`"
     "`or don't have enough rights.`"
 )
 INVALID_MEDIA = "`Invalid Extension`"
@@ -134,15 +134,15 @@ async def promote(promt):
         delete_messages=True,
         pin_messages=True,
     )
-    x = await edit_or_reply(promt, "`Promoting...`")
+    x = await edit_or_reply(promt, "`Promoting to admin ...`")
     user, rank = await get_user_from_event(promt)
     if not rank:
-        rank = "pro-admin"  # just in case
+        rank = "pro_admin"  # just in case
     if not user:
         return
     try:
         await promt.client(EditAdminRequest(promt.chat_id, user.id, new_rights, rank))
-        await x.edit("`Promoted Successfully! Enjoy!!`")
+        await x.edit("`Succesfully promoted to gang enjoy!`")
     except BadRequestError:
         await x.edit(NO_PERM)
         return
@@ -197,7 +197,7 @@ async def demote(dmod):
     except BadRequestError:
         await eor(dmod, NO_PERM)
         return
-    await eor(dmod, "`Demoted this retard!!`")
+    await eor(dmod, "`Demoted this fellow`")
 
     # Announce to the logging group if we have demoted successfully
     if BOTLOG:
@@ -392,7 +392,7 @@ async def kick(usr):
         await eor(usr, "`Couldn't fetch user.`")
         return
 
-    await eor(usr, "`Kicking...`")
+    await eor(usr, "`Kicking the stuff...`")
 
     try:
         await usr.client.kick_participant(usr.chat_id, user.id)
